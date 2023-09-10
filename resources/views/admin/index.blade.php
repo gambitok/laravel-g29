@@ -1,6 +1,7 @@
-@extends('layouts.app')
-{{--@section('title', $title)--}}
-@section('content')
-
-<h1>Admin dashboard</h1>
-@endsection
+<x-admin-layout>
+    <x-slot name="header">
+        <h1 class="text-3xl text-black pb-6">
+            {{ __('Dashboard') }}
+        </h1>
+    </x-slot>
+</x-admin-layout>
