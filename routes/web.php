@@ -59,3 +59,10 @@ Route::middleware([
     Route::get('admin/tags/{tag:slug}/edit', 'App\Http\Controllers\Admin\TagController@edit')->name('tags.edit');
 
 });
+
+use App\Livewire\Users\{CreateUser, EditUser, ShowUser};
+Route::get('/users/create', CreateUser::class)->name('users.create');
+Route::get('/users/{user}', ShowUser::class)->name('users.show');
+Route::get('/users/{user}/edit', EditUser::class)->name('users.edit');
+
+Route::get('/users', 'App\Http\Controllers\Admin\UserTable')->name('users.index');
