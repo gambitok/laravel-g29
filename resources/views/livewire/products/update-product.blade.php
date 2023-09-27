@@ -1,7 +1,10 @@
 <div class="md:flex">
     <x-slot name="header">
         <div class="flex justify-between">
-            <h1 class="text-3xl text-black pb-6">{{ $title }}</h1> <a href="{{ route('products.index') }}"><button class="bg-blue-300 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">All products</button></a>
+            <h1 class="text-3xl text-black pb-6">{{ $title }}</h1>
+            <a href="{{ route('products.index') }}">
+                <button class="bg-blue-300 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l">All products</button>
+            </a>
         </div>
     </x-slot>
 
@@ -9,7 +12,6 @@
         <div class="md:flex mb-8">
             <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
                 <div class="md:flex mb-4">
-
                     <div class="md:flex-1 md:pr-3">
                         <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Product Name</label>
                         <input class="w-full shadow-inner p-4 border-0" type="text" wire:model="form.name">
@@ -36,7 +38,6 @@
 
                     <div class="md:flex-1 md:pl-3">
                         <label class="block uppercase tracking-wide text-charcoal-darker text-xs font-bold">Product Category</label>
-
                         <select wire:model="form.category_id">
                             <option disabled>Select a category...</option>
                             @foreach (\App\Models\Category::all() as $option)
@@ -62,19 +63,20 @@
                 <div class="md:flex mb-6">
                     <div class="md:w-1/3">
                         <legend class="uppercase tracking-wide text-sm">Cover Image</legend>
-                        <img src="/storage/{{{ $form->cover }}}">
+                        <img src="{{ asset(Storage::url($form->cover)) }}">
                     </div>
-
                     <div class="md:flex-1 px-3 text-center">
-
                         <div class="button bg-blue-700 hover:bg-blue-800 text-white mx-auto cusor-pointer relative">
-                            <input class="opacity-0 absolute pin-x pin-y" type="file" name="cover">
+                            <input class="opacity-0 absolute pin-x pin-y" type="file" wire:model="form.cover">
                             Change Cover Image
                         </div>
                     </div>
                 </div>
+
                 <div class="md:flex mb-6">
-                    <div class="md:w-1/3"><legend class="uppercase tracking-wide text-sm">Status</legend></div>
+                    <div class="md:w-1/3">
+                        <legend class="uppercase tracking-wide text-sm">Status</legend>
+                    </div>
                     <div class="md:flex-1 mt-2 mb:mt-0 md:px-3">
                         <input type="checkbox" wire:model="form.status" {{{ $form->status == 1 ? "checked" : "" }}}>
                     </div>
